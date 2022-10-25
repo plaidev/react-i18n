@@ -18,6 +18,7 @@ export const useTranslation = <Resource, Locales extends Locale>(resources: {
    */
   const dependencies: any[] = [setting, ref];
   if (VITE_PLUGIN_REACT_PREAMBLE_INSTALLED) {
+    ref.current = resources;
     dependencies.push(resources);
   }
   return useMemo(() => {
