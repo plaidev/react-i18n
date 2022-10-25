@@ -1,0 +1,29 @@
+{
+  "name": "@plaidev/react-i18n",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:plaidev/react-i18n.git",
+  "author": "RyosukeCla <RyosukeCla@users.noreply.github.com>",
+  "scripts": {
+    "build": "yarn run build:lib && yarn run build:type",
+    "build:lib": "vite --config ./vite.build.config.ts build",
+    "build:type": "tsc -p ./tsconfig.build.json",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.8"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0"
+  }
+}
