@@ -27,9 +27,8 @@ export type I18ProviderProps = {
 export const I18nProvider = ({ detectors, fallbackLocale, children }: I18ProviderProps) => {
   const [state, setState] = useState<State>(() => {
     let locale: Locale | undefined = undefined;
-    detectors?.some((detector) => {
+    detectors?.forEach((detector) => {
       locale = detector(locale);
-      return locale;
     });
     return {
       locale: locale ?? fallbackLocale,
