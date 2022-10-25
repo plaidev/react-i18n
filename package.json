@@ -8,13 +8,18 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "git@github.com:plaidev/react-i18n.git",
   "author": "RyosukeCla <RyosukeCla@users.noreply.github.com>",
   "scripts": {
     "build": "yarn run build:lib && yarn run build:type",
     "build:lib": "vite --config ./vite.build.config.ts build",
     "build:type": "tsc -p ./tsconfig.build.json",
-    "test": "jest"
+    "test": "echo 'test is not implemented yet.'",
+    "prettier": "npx prettier --write ./__tests__/**/*.ts ./src/**/*.ts",
+    "prepublishOnly": "yarn run build"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
