@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import type { Locale } from "./locales";
 import { useLocaleSetting } from "./provider";
 
@@ -10,20 +10,18 @@ if (VITE_PLUGIN_REACT_PREAMBLE_INSTALLED) {
 export const useTranslation = <Resource, Locales extends Locale>(resources: {
   [key in Locales]: Resource;
 }): Resource => {
-  const [resourcesRef, setResources]= useState<typeof resources>(resources);
+  const ref = useRef<typeof resources>(resources);
   const setting = useLocaleSetting();
 
   /**
-   * VITE_PLUGIN_REACT_PREAMBLE_INSTALLED is always the same in the context, so we can use useEffect in a if condition.
+   * VITE_PLUGIN_REACT_PREAMBLE_INSTALLED is always the same in the context, so we can use if-condition.
    */
+  const dependencies: any[] = [setting, ref];
   if (VITE_PLUGIN_REACT_PREAMBLE_INSTALLED) {
-    useEffect(() => {
-      setResources(resources);
-    }, [resources]);
+    dependencies.push(resources);
   }
-
   return useMemo(() => {
-    const resources = resourcesRef;
+    const resources = ref.current;
     const resource =
       (resources as any)[setting.locale] ||
       (resources as any)[setting.fallbackLocale];
@@ -33,5 +31,5 @@ export const useTranslation = <Resource, Locales extends Locale>(resources: {
       );
     }
     return resource;
-  }, [setting, resourcesRef]);
+  }, dependencies);
 };
