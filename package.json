@@ -1,6 +1,6 @@
 {
   "name": "@plaidev/react-i18n",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
+    "@vitejs/plugin-react": "^2.1.0",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "typescript": "^4.8.4",
