@@ -79,7 +79,7 @@ export const Hello = () => {
     },
     en: {
       hello: 'hello',
-      world: 'world,
+      world: 'world',
     }
   });
   return <div>
