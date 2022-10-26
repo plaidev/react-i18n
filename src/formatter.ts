@@ -32,7 +32,7 @@ export const useNumberFormat = () => {
   const setting = useLocaleSettingValue();
   return useCallback(
     (value: number, option?: Intl.NumberFormatOptions) => {
-      const formatter = new Intl.NumberFormat("en-US", option);
+      const formatter = new Intl.NumberFormat(setting.locale, option);
       return formatter.format(value);
     },
     [setting]
