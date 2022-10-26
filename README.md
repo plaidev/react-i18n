@@ -180,7 +180,7 @@ import {
 
 <I18nProvider
   fallbackLocale="en"
-  detectors={[cookie]}
+  detectors={[cookie('something_key')]}
 >
   <App />
 </I18nProvider>
@@ -242,3 +242,29 @@ import {
   <App />
 </I18nProvider>
 ```
+
+## Other hooks
+
+```tsx
+import {
+  useLocaleSetting,
+  useLocaleSettingValue,
+  useSetLocaleSetting,
+} from '@plaidev/react-i18n';
+
+export const Example1 = () => {
+  const [{ locale }, { setLocale }] = useLocaleSetting();
+  return <button onClick={() => setLocale('en')}>{locale}</button>
+}
+
+export const Example2 = () => {
+  const { locale } = useLocaleSettingValue();
+  return <button>{locale}</button>
+}
+
+export const Example3 = () => {
+  const { setLocale } = useSetLocaleSetting();
+  return <button onClick={() => setLocale('en')}>en</button>
+}
+```
+

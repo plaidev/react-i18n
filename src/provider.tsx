@@ -26,12 +26,12 @@ export type I18ProviderProps = {
 }
 export const I18nProvider = ({ detectors, fallbackLocale, children }: I18ProviderProps) => {
   const [state, setState] = useState<State>(() => {
-    let locale: Locale | undefined = undefined;
+    let locale: Locale = fallbackLocale;
     detectors?.forEach((detector) => {
       locale = detector(locale);
     });
     return {
-      locale: locale ?? fallbackLocale,
+      locale: locale,
       fallbackLocale,
     };
   });
@@ -76,7 +76,11 @@ export const I18nProvider = ({ detectors, fallbackLocale, children }: I18Provide
   </context.Provider>
 }
 
-export const useLocaleSetting = (): State => {
+export const useLocaleSetting = (): [State, Api] => {
+  return useContext(context);
+}
+
+export const useLocaleSettingValue = (): State => {
   const [state] = useContext(context);
   return state;
 }

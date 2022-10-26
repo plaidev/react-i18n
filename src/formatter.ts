@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useLocaleSetting } from "./provider";
+import { useLocaleSettingValue } from "./provider";
 import { Currency } from "./locales";
 
 /**
@@ -11,7 +11,7 @@ import { Currency } from "./locales";
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
  */
 export const useCurrencyFormat = () => {
-  const setting = useLocaleSetting();
+  const setting = useLocaleSettingValue();
   return useCallback(
     (value: number | bigint, currency: Currency) => {
       const formatter = new Intl.NumberFormat(setting.locale, {
@@ -29,7 +29,7 @@ export const useCurrencyFormat = () => {
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
  */
 export const useNumberFormat = () => {
-  const setting = useLocaleSetting();
+  const setting = useLocaleSettingValue();
   return useCallback(
     (value: number, option?: Intl.NumberFormatOptions) => {
       const formatter = new Intl.NumberFormat("en-US", option);
@@ -43,7 +43,7 @@ export const useNumberFormat = () => {
  * @reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
  */
 export const useDateTimeFormat = () => {
-  const setting = useLocaleSetting();
+  const setting = useLocaleSettingValue();
   return useCallback(
     (data: number | Date | undefined, options?: Intl.DateTimeFormatOptions) => {
       const formatter = new Intl.DateTimeFormat(setting.locale, options);
@@ -57,7 +57,7 @@ export const useDateTimeFormat = () => {
  * @reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat
  */
 export const useRelativeTimeFormat = () => {
-  const setting = useLocaleSetting();
+  const setting = useLocaleSettingValue();
   return useCallback(
     (
       value: number,
@@ -75,7 +75,7 @@ export const useRelativeTimeFormat = () => {
  * @reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/ListFormat
  */
 export const useListFormat = () => {
-  const setting = useLocaleSetting();
+  const setting = useLocaleSettingValue();
   return useCallback(
     (list: string[], options?: Intl.ListFormatOptions) => {
       const formatter = new Intl.ListFormat(setting.locale, options);
@@ -89,7 +89,7 @@ export const useListFormat = () => {
  * @reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules
  */
 export const usePluralRules = () => {
-  const setting = useLocaleSetting();
+  const setting = useLocaleSettingValue();
   return useCallback(
     (value: number, options?: Intl.PluralRulesOptions) => {
       const formatter = new Intl.PluralRules(setting.locale, options);
