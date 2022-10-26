@@ -2,6 +2,7 @@ export {
   I18nProvider,
   useLocaleSetting,
   useSetLocaleSetting,
+  useLocaleSettingValue,
 } from "./provider";
 export type { I18ProviderProps } from "./provider";
 export { useTranslation } from "./translation";
