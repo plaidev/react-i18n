@@ -1,6 +1,6 @@
 {
   "name": "@plaidev/react-i18n",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "license": "MIT",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",

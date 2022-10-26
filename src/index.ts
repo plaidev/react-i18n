@@ -5,7 +5,7 @@ export {
   useLocaleSettingValue,
 } from "./provider";
 export type { I18ProviderProps } from "./provider";
-export { useTranslation } from "./translation";
+export { useTranslation, useInlineTranslation } from "./translation";
 export type { Locale, Currency } from "./locales";
 export { browser, ignorePlaceCode, forcedLocale, cookie } from "./detectors";
 export type { Detector } from "./detectors";

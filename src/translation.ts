@@ -10,6 +10,18 @@ if (VITE_PLUGIN_REACT_PREAMBLE_INSTALLED) {
   );
 }
 
+/**
+ * @example
+ * const translated = useTranslation({
+ *   en: {
+ *     hello: "Hello",
+ *   },
+ *   ja: {
+ *    hello: "こんにちは",
+ *   },
+ * });
+ * translated.hello; // "Hello" or "こんにちは"
+ */
 export const useTranslation = <Resource, Locales extends Locale>(resources: {
   [key in Locales]: Resource;
 }): Resource => {
@@ -37,3 +49,25 @@ export const useTranslation = <Resource, Locales extends Locale>(resources: {
     return resource;
   }, dependencies);
 };
+
+/**
+ * @example
+ * const translate = useInlineTranslation();
+ * translate({ en: 'Hello', ja: 'こんにちは' }); // "Hello" or "こんにちは"
+ */
+export const useInlineTranslation = () => {
+  const setting = useLocaleSettingValue();
+  return useMemo(() => {
+    return <Resource, Locales extends Locale>(resources: { [key in Locales]: Resource }): Resource => {
+      const resource =
+      (resources as any)[setting.locale] ||
+      (resources as any)[setting.fallbackLocale];
+      if (!resource) {
+        throw new Error(
+          `No resource for locale ${setting.locale} or ${setting.fallbackLocale}`
+        );
+      }
+      return resource;
+    }
+  }, [setting]);
+}

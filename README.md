@@ -88,6 +88,19 @@ export const Hello = () => {
 }
 ```
 
+### Inline Translation
+
+```tsx
+import { useInlineTranslation } from '@plaidev/react-i18n';
+
+export const Hello = () => {
+  const translated = useInlineTranslation();
+  return <div>
+    {translated({ en: 'Hello', ja: 'こんにちは' })} {/* "Hello" or "こんにちは" */}
+  </div>
+}
+```
+
 ### Interpolation
 
 ```tsx
@@ -244,6 +257,8 @@ import {
 ```
 
 ## Other hooks
+
+@plaidev/react-i18n supports the locale setter and the locale getter hooks.
 
 ```tsx
 import {
