@@ -1,6 +1,6 @@
-# react-i18n
+# @plaidev/react-i18n
 
-The most simplest internationalization library for react.
+The most simplest type-safe internationalization library for react.
 
 ## Getting started
 
