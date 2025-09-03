@@ -20,14 +20,14 @@ jobs:
       - name: setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 16.x
+          node-version: 24.7.0
           registry-url: 'https://npm.pkg.github.com'
       - name: install
-        run: yarn install
+        run: npm install
       - name: build
-        run: yarn run build
+        run: npm run build
       - name: test
-        run: yarn test
+        run: npm run test
       - name: publish
         run: |
           npx can-npm-publish --verbose && npm publish --registry https://npm.pkg.github.com --access restricted || echo "Does not publish"
