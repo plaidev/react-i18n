@@ -2,9 +2,11 @@ import type { Locale } from "./locales";
 
 export type Detector = (previouslyDetectedLocale: Locale) => Locale;
 export const browser: Detector = (locale: Locale): Locale => {
-  const navigator = window.navigator;
-  const lang =
-    (navigator.languages && navigator.languages[0]) || navigator.language;
+  if (typeof window === 'undefined' || typeof window.navigator === 'undefined') {
+    return locale;
+  }
+  const nav = window.navigator as Navigator | undefined;
+  const lang = (nav?.languages && nav.languages[0]) || nav?.language;
   if (!lang) return locale;
   return lang as Locale;
 };
@@ -24,6 +26,9 @@ export const forcedLocale = (locale: Locale): Detector => {
 
 export const cookie = (cookieKey: string): Detector => {
   return (locale: Locale) => {
+    if (typeof document === 'undefined') {
+      return locale;
+    }
     const cookieValue = document.cookie
       .split("; ")
       .find((row) => row.startsWith(cookieKey + "="))
