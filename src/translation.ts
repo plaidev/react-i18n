@@ -2,9 +2,13 @@ import { useMemo, useRef } from "react";
 import type { Locale } from "./locales";
 import { useLocaleSettingValue } from "./provider";
 
-const VITE_PLUGIN_REACT_PREAMBLE_INSTALLED = (window as any)
-  .__vite_plugin_react_preamble_installed__ as boolean | undefined;
-if (VITE_PLUGIN_REACT_PREAMBLE_INSTALLED) {
+const VITE_PLUGIN_REACT_PREAMBLE_INSTALLED: boolean | undefined =
+  typeof window !== "undefined"
+    ? ((window as any).__vite_plugin_react_preamble_installed__ as
+        | boolean
+        | undefined)
+    : undefined;
+if (typeof window !== "undefined" && VITE_PLUGIN_REACT_PREAMBLE_INSTALLED) {
   console.warn(
     "@plaidev/react-i18n: @vitejs/plugin-react is detected, so useTranslation won't cache the resources. However, it will be cached on production build."
   );
